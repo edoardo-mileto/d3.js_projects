@@ -130,7 +130,6 @@
 
 				for(var i = 0; i< node[0].length; i++){
 					node[0][i].setAttribute("id",""+Math.floor(Math.random()*1000));
-					console.log(node[0][i]);
 				}
 
 				// add the rectangles for the nodes
@@ -158,7 +157,7 @@
 				.attr("text-anchor", "start");
 
 				
-				manualLayout(node[0][3],450,70);
+				manualLayout(3,150);
 
 				// the function for moving the nodes
 				function dragmove(d) {
@@ -170,10 +169,11 @@
 				link.attr("d", path);
 				}
 
-				function manualLayout(n,x,y){
-					var nodo = document.getElementById(n.id);
-					d3.select(nodo).attr("transform","translate(" + (x) + "," + (y) + ")");
-					//nodo.setAttribute('transform',"translate("+x+","+y+")");
+				function manualLayout(index,y){
+					var foo = d3.selectAll("g.node");
+					pickNode = foo[0][index];
+					d = graph.nodes[index];
+					d3.select(pickNode).attr("transform", "translate(" + (d.x = d.x) + "," + (d.y = y) + ")");
 					sankey.relayout();
 					link.attr("d", path);
 				}
