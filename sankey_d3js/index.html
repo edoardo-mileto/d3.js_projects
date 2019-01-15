@@ -28,26 +28,58 @@
 	  stroke-opacity: .5;
 	}
 
-
+	table{
+		border: 1px solid #292929;
+	}
 	</style>
 
     <body>
 
 		<p id="chart">
 
+		<div id="container">
+				<table id="table" style="position: absolute; width: 50%; height:52.5%;z-index: -1;">
+					<tr style="width:50%; height:50%">
+						<td id="first" style="width: 5%; height: 10%;background-color: #8e44ad;"></td>
+						<td id="second" style="width: 5%; height: 10%;background-color: #34495e;"></td>
+						<td id="third" style="width: 5%; height: 10%;background-color: #3498db;"></td>
+						<td id="fourth" style="width: 5%; height: 10%;background-color: #2ecc71;"></td>
+					</tr>
+					<tr style="width:50%; height:50%">
+						<td style="fifth: 5%; height: 10%;background-color: #d35400;"></td>
+						<td style="sixth: 5%; height: 10%;background-color: #f1c40f;"></td>
+						<td style="seventh: 5%; height: 10%;background-color: #16a085;"></td>
+						<td style="eigth: 5%; height: 10%;background-color: #2980b9;"></td>
+					</tr>
+				</table>
+		</div>
+
         <script src="http://d3js.org/d3.v3.min.js"></script>
         <script src="sankey.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
         <script>
 
 				var units = "Widgets";
 
-				var margin = {top: 10, right: 10, bottom: 10, left: 10},
-                width = 700 - margin.left - margin.right,
-                height = 300 - margin.top - margin.bottom;
+				var first= document.getElementById('first');
+				var table = document.getElementById('table');
+
+				var x =$(first).offset().left-(-750/100*($(first).offset().left));
+				var y =$(first).offset().top-(50/100*($(first).offset().top));
+
+				var margin = {top: 5, right: 5, bottom: 5, left: 5},
+                width = $(table).width() - margin.left - margin.right,
+                height = $(table).height() - margin.top - margin.bottom;
 
 				var formatNumber = d3.format(",.0f"),    // zero decimal places
                 format = function(d) { return formatNumber(d) + " " + units; },
                 color = d3.scale.category20();
+
+				var div = document.getElementById("container");
+				var p = document.getElementById("chart");
+				div.appendChild(p);
+				
 
 				// append the svg canvas to the page
 				var svg = d3.select("#chart").append("svg")
@@ -157,7 +189,7 @@
 				.attr("text-anchor", "start");
 
 				
-				manualLayout(3,150);
+				manualLayout(0,x,y);
 
 				// the function for moving the nodes
 				function dragmove(d) {
@@ -169,11 +201,11 @@
 				link.attr("d", path);
 				}
 
-				function manualLayout(index,y){
+				function manualLayout(index,x,y){
 					var foo = d3.selectAll("g.node");
 					pickNode = foo[0][index];
 					d = graph.nodes[index];
-					d3.select(pickNode).attr("transform", "translate(" + (d.x = d.x) + "," + (d.y = y) + ")");
+					d3.select(pickNode).attr("transform", "translate(" + (d.x = x) + "," + (d.y = y) + ")");
 					sankey.relayout();
 					link.attr("d", path);
 				}
