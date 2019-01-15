@@ -4,36 +4,42 @@
 
 <!--Contributor: Andrea D'Attero-->
 <!--Contributor: Edoardo Mileto-->
+<head>
+	<link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Allerta Stencil' rel='stylesheet'>
 
-<title>SANKEY Experiment</title>
-	<style>
+	<title>SANKEY Experiment</title>
+		<style>
 
-	.node rect {
-	  cursor: move;
-	  fill-opacity: .9;
-	  shape-rendering: crispEdges;
-	}
+		.node rect {
+		  cursor: move;
+		  fill-opacity: .9;
+		  shape-rendering: crispEdges;
+		}
 
-	.node text {
-	  pointer-events: none;
-	  text-shadow: 0 1px 0 #fff;
-	}
+		.node text {
+		  pointer-events: none;
+		  text-shadow: 0 1px 0 #fff;
+		  font-family: 'Roboto Mono';
+		  font-size: 20px
 
-	.link {
-	  fill: none;
-	  stroke: #000;
-	  stroke-opacity: .2;
-	}
+		}
 
-	.link:hover {
-	  stroke-opacity: .5;
-	}
+		.link {
+		  fill: none;
+		  stroke: #000;
+		  stroke-opacity: .2;
+		}
 
-	table{
-		border: 1px solid #292929;
-	}
-	</style>
+		.link:hover {
+		  stroke-opacity: .5;
+		}
 
+		table{
+			border: 1px solid #292929;
+		}
+		</style>
+</head>
     <body>
 
 		<p id="chart">
