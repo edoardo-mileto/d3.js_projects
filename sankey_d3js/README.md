@@ -1,4 +1,9 @@
 # sankey diagram made with d3
-![alt text](https://raw.githubusercontent.com/edoardo-mileto/d3.js_projects/master/sankey_d3js/Diagram.png)
+
+##Current diagram
+![alt text] aaa
 ### status
-Il diagramma viene ora generato senza alcuna collisione
+14/01/2019 Il diagramma viene ora generato senza alcuna collisione
+15/01/2019 Suddivisione in sezioni, font update
+##Older version
+![alt text](https://raw.githubusercontent.com/edoardo-mileto/d3.js_projects/master/sankey_d3js/Diagram.png)
