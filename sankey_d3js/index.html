@@ -66,16 +66,16 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
         <script>
-
 				var units = "Widgets";
 
 				var first= document.getElementById('first');
 				var table = document.getElementById('table');
 
-				var x =$(first).offset().left-(-750/100*($(first).offset().left));
-				var y =$(first).offset().top-(50/100*($(first).offset().top));
+				var x =$(first).offset().left+$(first).width()/3;//-(-750/100*($(first).offset().left))
+				var y =$(first).offset().top-$(first).height()/15;//-(50/100*($(first).offset().top))
 
 				var margin = {top: 5, right: 5, bottom: 5, left: 5},
+
                 width = $(table).width() - margin.left - margin.right,
                 height = $(table).height() - margin.top - margin.bottom;
 
@@ -195,8 +195,10 @@
 				.attr("x", 6 + sankey.nodeWidth())
 				.attr("text-anchor", "start");
 
-				
 				manualLayout(0,x,y);
+				nodeInMiddle('first','fifth',0);
+
+				isOutside(node[0][1],'first');
 
 				// the function for moving the nodes
 				function dragmove(d) {
@@ -215,6 +217,36 @@
 					d3.select(pickNode).attr("transform", "translate(" + (d.x = x) + "," + (d.y = y) + ")");
 					sankey.relayout();
 					link.attr("d", path);
+				}
+
+				function isOutside(node,idCella){
+					//poszione in alto a sinistra (x,y) del nodo
+					var leftUpBoundX=$(node).offset().left;
+					var leftUpBoundY=$(node).offset().top;
+
+					//width heigth del nodo
+					var width=document.getElementById(node.id).children[0].width.baseVal.value;
+					var height=document.getElementById(node.id).children[0].height.baseVal.value;
+
+
+					//posizione in basso a destra del nodo 
+					var rightDownBoundX=leftUpBoundX+width;
+					var rightUpBoundY=leftUpBoundY+height;
+
+					var position = [rightDownBoundX,rightUpBoundY];
+					var cell = document.getElementById(idCella);
+
+					(($(cell).offset().top+$(cell).height())< position[1]) ? console.log(node.id+" is outside of cell "+cell.id+".") : console.log("");
+				}
+
+				function nodeInMiddle(idCella1,idCella2,indexOfNode){
+						var c1 = document.getElementById(idCella1);
+						var c2 = document.getElementById(idCella2);
+						var c1X= $(c1).offset().left;
+						var c1Y= $(c1).offset().top;
+						var c2X= $(c2).offset().left;
+						var c2Y= $(c2).offset().top;
+						manualLayout(indexOfNode,node[0][indexOfNode].__data__.x,(c1Y+c2Y)/2);
 				}
             });
 
