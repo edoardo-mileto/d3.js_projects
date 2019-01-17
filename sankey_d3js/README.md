@@ -3,7 +3,8 @@
 ## Current diagram
 ![alt text](https://raw.githubusercontent.com/edoardo-mileto/d3.js_projects/master/sankey_d3js/Updated%20diagram.png)
 ### status
-14/01/2019 Il diagramma viene ora generato senza alcuna collisione  <br />
-15/01/2019 Suddivisione in sezioni, font update
+14/01/2019 The diagram is now generated without any collision  <br />
+15/01/2019 Divided in sections, using a table made up of 2 rows and 4 columns, font update <br />
+16/01/2019 Added method capable of placing the nodes in between two cells.
 ## Older version
 ![alt text](https://raw.githubusercontent.com/edoardo-mileto/d3.js_projects/master/sankey_d3js/Diagram.png)
